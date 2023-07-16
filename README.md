@@ -1,4 +1,4 @@
-# InvoiceTable Match Scores
+# InvoiceTable Details
 
 Given two files `app.js` and a database file `invoiceTable.db` consisting of table `invoiceTables`.
 
