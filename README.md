@@ -1,52 +1,36 @@
-# Player Match Scores
+# InvoiceTable Match Scores
 
-Given two files `app.js` and a database file `cricketMatchDetails.db` consisting of three tables `player_details`, `match_details` and `player_match_score`.
+Given two files `app.js` and a database file `invoiceTable.db` consisting of table `invoiceTables`.
 
-Write APIs to perform operations on the tables `player_details`, `match_details` and `player_match_score` containing the following columns,
+Write APIs to perform operations on the tables `invoiceTables`
 
-**Player Details Table**
+**InvoiceTable Details Table**
 
-| Column    | Type    |
-| ---------- | ------- |
-| player_id   | INTEGER |
-| player_name | TEXT    |
+| Column        | Type    |
+| ----------    | ------- |
+| invoiceDate   | DATE    |
+| invoiceNumber | INTEGER |
+| invoiceAmount | INTEGER |
 
-**Match Details Table**
 
-| Column    | Type    |
-| ---------- | ------- |
-| match_id   | INTEGER |
-| match | TEXT    |
-|year|INTEGER|
-
-**Player Match Score Table**
-
-| Column    | Type    |
-| ---------- | ------- |
-| player_match_id   | INTEGER |
-| player_id | INTEGER    |
-|match_id|INTEGER|
-|score|INTEGER|
-|fours | INTEGER |
-|sixes | INTEGER |
 
 ### API 1
 
-#### Path: `/players/`
+#### Path: `/invoices/`
 
-#### Method: `GET`
+#### Method: `POST`
 
 #### Description:
 
-Returns a list of all the players in the player table
+Returns a list of all the invoices in the invoice table
 
 #### Response
 
 ```
 [
   { 
-    playerId: 1,
-    playerName: "Ram"
+    invoiceNumber: 1,
+    invoiceAmount: 25000
   },
 
   ...
@@ -55,38 +39,38 @@ Returns a list of all the players in the player table
 
 ### API 2
 
-#### Path: `/players/:playerId/`
-
-#### Method: `GET`
-
-#### Description:
-
-Returns a specific player based on the player ID
-
-#### Response
-
-```
-{ 
-  playerId: 2,
-  playerName: "Joseph"
-}
-```
-
-### API 3
-
-#### Path: `/players/:playerId/`
+#### Path: `/invoices/:invoiceNumber`
 
 #### Method: `PUT`
 
 #### Description:
 
-Updates the details of a specific player based on the player ID
+Returns a specific invoice based on the invoice Number
+
+#### Response
+
+```
+{ 
+  invoiceNumber: 3,
+  invoiceDate: "16t July 2023"
+}
+```
+
+### API 3
+
+#### Path: `/invoices/:invoiceNumber`
+
+#### Method: `DELETE`
+
+#### Description:
+
+Delate the details of a specific invoice based on the invoiceNumber
 
 #### Request
 
 ```
 {
-  "playerName": "Raju"
+  "invoiceNumber": 1
 }
 ```
 
@@ -100,100 +84,58 @@ Player Details Updated
 
 ### API 4
 
-#### Path: `/matches/:matchId/`
+#### Path: `/invoices/`
 
 #### Method: `GET`
 
 #### Description:
 
-Returns the match details of a specific match
+Returns the invoice details of a specific invoiceTables Data
 
 #### Response
 
 ```
 { 
-  matchId: 18,
-  match: "RR vs SRH",
-  year: 2011
+  invoiceDate: "3 July 2023",
+  invoiceNumber: 1,
+  invoiceAmount: 20000
 }
 ```
 
 ### API 5
 
-#### Path: `/players/:playerId/matches`
+#### Path: `/invoices/filter`
 
 #### Method: `GET`
 
 #### Description:
 
-Returns a list of all the matches of a player
+Returns a list of all the invoice of a filter the list
 
 #### Response
 
 ```
 [
-  { 
-    matchId: 1,
-    match: "SRH vs MI",
-    year: 2016
-  },
-
-  ...
-]
-```
-
-
-### API 6
-
-#### Path: `/matches/:matchId/players`
-
-#### Method: `GET`
-
-#### Description:
-
-Returns a list of players of a specific match
-
-#### Response
-
-```
-[
-  { 
-    playerId: 2,
-    playerName: "Joseph"
-  },
-  ...
-]
-```
-
-
-
-### API 7
-
-#### Path: `/players/:playerId/playerScores`
-
-#### Method: `GET`
-
-#### Description:
-
-Returns the statistics of the total score, fours, sixes of a specific player based on the player ID
-
-#### Response
-
-```
-{
-  playerId: 1,
-  playerName: "Ram"
-  totalScore: 3453,
-  totalFours: 342,
-  totalSixes: 98
+ { 
+  invoiceDate: "3 July 2023",
+  invoiceNumber: 1,
+  invoiceAmount: 20000
 }
 
+  ...
+]
+```
+#### CREATE a query detailes
+
+```
+        CREATE TABLE invoiceTables(invoiceDate DATE,invoiceNumber INTEGER,invoiceAmount INTEGER);
 ```
 
-<br/>
+#### INSERT a query detailes
 
-Use `npm install` to install the packages.
-
-**Export the express instance using the default export syntax.**
-
-**Use Common JS module syntax.**
+```
+        INSERT INTO customers (invoiceDate, invoiceNumber, invoiceAmount)
+        VALUES ("3 July 2023", '1', 20000),
+               ("4 July 2022", '2', 25000),
+               ("5 July 2024", '3', 3000);
+```
