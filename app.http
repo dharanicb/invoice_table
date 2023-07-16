@@ -1,0 +1,14 @@
+POST http://localhost:3000/invoices/
+
+###
+PUT http://localhost:3000/invoices/2
+
+###
+DELETE http://localhost:3000/invoices/1
+
+###
+GET  http://localhost:3000/invoices/
+
+###
+GET http://localhost:3000/invoices/filter
+
